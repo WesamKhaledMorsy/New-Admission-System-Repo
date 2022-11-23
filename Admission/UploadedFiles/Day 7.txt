@@ -1,0 +1,70 @@
+using System;
+using ClassLibrary1;
+
+namespace ConsoleApp4
+{
+    class Room
+    {
+        private int _width;
+
+        public int length;
+        public void setWdth(int x)
+        {
+            //if (x < 0)
+            //    x = 1;
+           
+            //    width= x;
+            if(x>0)
+                _width = x;
+        }
+
+        public int  getWidth()
+        {
+            return _width;
+        }
+        public int Width
+        {
+            set
+            {
+                if (value > 0)
+                    _width = value;
+            }
+            get
+            {
+                return _width;
+            }
+        }
+
+
+        public Room()
+        {
+            _width = 10;
+            length = 10;
+        }
+        public Room(int w,int z)
+        {
+            _width = w;
+            length = z;
+        }
+
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Room room= new Room();
+            room.setWdth(100);
+            room.setWdth(200);
+
+            Room room2 = new Room();
+            room2=new   Room(); 
+            Console.WriteLine(room.getWidth());
+
+            int l = 90;
+            int w = 80;
+
+
+            Room r3 = new Room { length = l, Width = 90 };
+        }
+    }
+}
