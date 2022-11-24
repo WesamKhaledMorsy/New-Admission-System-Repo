@@ -106,7 +106,7 @@ builder.Services.Configure<IdentityOptions>(opts => {
     opts.Password.RequireNonAlphanumeric=false;
     opts.Password.RequireDigit=true;
 
-    opts.User.AllowedUserNameCharacters="abcdefghijklmnopqrstuvwxyz";
+    opts.User.AllowedUserNameCharacters="abcdefghijklmnopqrstuvwxyz0123456789";
     opts.User.RequireUniqueEmail= true;
     
 

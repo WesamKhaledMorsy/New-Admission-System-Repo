@@ -67,6 +67,9 @@ namespace Admission.Controllers
         public StudentFilterDTO GetAllStudentData()
             => _manageStudent.GetAllStudentData();
 
+        [HttpGet,Route("GetStudentsWaitingForInterview")]
+       public List<Student> GetStudentsWaitingForInterview()
+            => _manageStudent.GetStudentsWaitingForInterview();
 
         [HttpGet,Route("GetStudentsAccepted")]
         public List<Student> GetStudentsAccepted()

@@ -118,6 +118,7 @@ namespace Admission.Services
         public async Task<string> AddRole(AddRole addRole)
         {
             var user = await _userManager.FindByIdAsync(addRole.UserId);
+            
             if (user == null || !await _roleManager.RoleExistsAsync(addRole.RoleName))
             {
                 return "Invalid UserId or UserRole";
@@ -126,10 +127,17 @@ namespace Admission.Services
             {
                 return $"The User is already {addRole.RoleName}";
             }
+
             var result = await _userManager.AddToRoleAsync(user, addRole.RoleName);
+            //if (addRole.RoleName != null)
+            //{
+            //    addRole.RoleName = null;
+            //     result = await _userManager.AddToRoleAsync(user, addRole.RoleName);
+            //}
+            
             if (result.Succeeded)
             {
-                return "The Role is Added";
+                return  "The Role is Added";
             }
             else
             {

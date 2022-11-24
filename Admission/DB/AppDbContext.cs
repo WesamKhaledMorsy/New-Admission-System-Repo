@@ -28,6 +28,8 @@ namespace Admission.DB
         public  DbSet<Admin> Admins { get; set; }
 
         public DbSet<ApplicationUser> Users { get; set; }
+       // public DbSet<ApplicationRole> Roles { get; set; }
+
 
         //protected override void OnModelCreating(ModelBuilder modelBuilder)
         //{

@@ -1,4 +1,5 @@
 ﻿using Admission.Manage.manageDocument;
+using Admission.Model.DomainModel;
 
 namespace Admission.Manage.manageStudent
 {
@@ -18,6 +19,7 @@ namespace Admission.Manage.manageStudent
          List<StudentDTO> GetStudentByInterviewerId(Guid? id);
         List<Model.DomainModel.Student> GetStudentsAccepted();
         List<Model.DomainModel.Student> GetStudentsRejected();
+        List<Student> GetStudentsWaitingForInterview();
 
     }
 }

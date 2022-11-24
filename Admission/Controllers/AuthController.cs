@@ -1,10 +1,12 @@
 ﻿using Admission.DB;
 using Admission.Model.DomainModel;
 using Admission.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using Twilio.TwiML.Messaging;
@@ -47,7 +49,7 @@ namespace Admission.Controllers
             }
             if (!result.IsAuthenticated)
             {
-                return BadRequest(result.Message);
+                return Ok(result);
             }
 
             if (register.UserName == "google")
@@ -56,10 +58,10 @@ namespace Admission.Controllers
                 return BadRequest("Google cannot be used as a user name");
             }
 
-            if (!register.Email.ToLower().EndsWith("@yahoo.com"))
-            {
-                return BadRequest("Only yahoo.com email addresses are allowed");
-            }
+            //if (!register.Email.ToLower().EndsWith("@yahoo.com") || !register.Email.ToLower().EndsWith("@gmail.com"))
+            //{
+            //    return BadRequest("Only yahoo.com or gmail.com email addresses are allowed");
+            //}
             return Ok(result);
         }
 
@@ -75,7 +77,7 @@ namespace Admission.Controllers
             var result = await _authService.Login(login);
             if (!result.IsAuthenticated)
             {
-                return BadRequest(result.Message);
+                return Ok(result);
             }
             return Ok(result);
         }
@@ -107,7 +109,7 @@ namespace Admission.Controllers
         }
 
 
-
+        //[Authorize]
         [HttpPost]
         [Route("AddRole")]
         public async Task<IActionResult> AddRole([FromBody] AddRole addRole)
@@ -117,11 +119,27 @@ namespace Admission.Controllers
                 return BadRequest(ModelState);
             }
             var result = await _authService.AddRole(addRole);
+
             if (!string.IsNullOrEmpty(result))
             {
-                return BadRequest(result);
+                return Ok(result);
             }
             return Ok(addRole);
+        }
+
+
+        [HttpGet,Route("GetRole")]
+        public List<ApplicationRole> GetRole()
+        {
+            var roles = _roleManager.Roles.ToList();
+            return roles;
+        }
+        [HttpGet,Route("GetRoleById")]
+        public List<ApplicationRole> GetRoleById(string id)
+        {
+            var role = _roleManager.Roles.Where(r=>r.Id == id).ToList();
+              
+            return role;
         }
 
     }

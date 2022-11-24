@@ -59,16 +59,17 @@ namespace Admission.Manage.manageStudent
             _student.StatusId=student.StatusId;
             if (student.StatusId==null)
             {
-                _student.StatusId=new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa7");
-                //var statuses = _dbContext.Statuses.Where(status => !status.IsDeleted).ToList();
-                //foreach (var status in statuses)
-                //{
-                //    if(status.StatusName.Contains("Waiting for Interview"))
-                //    {
-                //        student.StatusId = status.Id;
-                //        _student.StatusId=student.StatusId;
-                //    }
-                //}
+                //_student.StatusId=new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa7");
+                
+                var statuses = _dbContext.Statuses.Where(status => !status.IsDeleted).ToList();
+                foreach (var status in statuses)
+                {
+                    if (status.Id == new Guid("5977ffec-f62f-4f3b-1032-08dabff46f5c"))
+                    {
+                        student.StatusId = status.Id;
+                        _student.StatusId = student.StatusId;
+                    }
+                }
             }
 
            
@@ -508,20 +509,40 @@ namespace Admission.Manage.manageStudent
             return dto;
 
         }
+        public List<Student> GetStudentsWaitingForInterview()
+        {
+            //    var studentRejected = _dbContext.Students.Where(st => !st.IsDeleted
+            //        && st.StatusId==new Guid("5cdcc685-6480-42da-bd7d-08dab748097d"))
+            //    .ToList();
 
+            // 62b5c8dc-c2e0-411d-1034-08dabff46f5c
+            var studentWaiting = _dbContext.Students.Where(st => !st.IsDeleted
+                  && st.StatusId == new Guid("5977ffec-f62f-4f3b-1032-08dabff46f5c"))
+               .ToList();
+
+            return studentWaiting;
+        }
         public List<Student> GetStudentsAccepted()
         {
-            var studentAccepted = _dbContext.Students.Where(st => !st.IsDeleted
-                  && st.StatusId==new Guid("72ad3bfd-143d-4a1c-fda2-08dab747359c"))
-              .ToList();
+            //var studentAccepted = _dbContext.Students.Where(st => !st.IsDeleted
+            //      && st.StatusId==new Guid("72ad3bfd-143d-4a1c-fda2-08dab747359c"))
+            //  .ToList();
 
+            var studentAccepted = _dbContext.Students.Where(st => !st.IsDeleted
+               && st.StatusId == new Guid("1a71a0f5-8c87-4f64-1035-08dabff46f5c"))
+           .ToList();
             return studentAccepted;
         }
        public List<Student> GetStudentsRejected()
         {
+        //    var studentRejected = _dbContext.Students.Where(st => !st.IsDeleted
+        //        && st.StatusId==new Guid("5cdcc685-6480-42da-bd7d-08dab748097d"))
+        //    .ToList();
+
+            // 62b5c8dc-c2e0-411d-1034-08dabff46f5c
             var studentRejected = _dbContext.Students.Where(st => !st.IsDeleted
-                && st.StatusId==new Guid("5cdcc685-6480-42da-bd7d-08dab748097d"))
-            .ToList();
+                  && st.StatusId == new Guid("62b5c8dc-c2e0-411d-1034-08dabff46f5c"))
+               .ToList();
 
             return studentRejected;
         }
