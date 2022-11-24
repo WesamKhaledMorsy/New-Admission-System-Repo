@@ -20,6 +20,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json.Serialization;
 using SendGrid.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -97,6 +98,19 @@ builder.Services.AddAuthentication(option =>
         };
 
     });
+
+builder.Services.Configure<IdentityOptions>(opts => {
+    opts.Password.RequiredLength = 8;
+    opts.Password.RequireLowercase = true;
+    opts.Password.RequireUppercase = false;
+    opts.Password.RequireNonAlphanumeric=false;
+    opts.Password.RequireDigit=true;
+
+    opts.User.AllowedUserNameCharacters="abcdefghijklmnopqrstuvwxyz";
+    opts.User.RequireUniqueEmail= true;
+    
+
+});
 
 builder.Services.AddCors(options => options.AddPolicy(
     name: "Admission",

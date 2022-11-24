@@ -1,4 +1,6 @@
-﻿namespace Admission.Model.DomainModel
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace Admission.Model.DomainModel
 {
     public class AuthModel
     {
@@ -11,5 +13,7 @@
         public List<string> Roles { get; set; }
         public string Tokens { get; set; }
         public DateTime ExpiredAt { get; set; }
+        public bool Succeeded { get;  set; }
+        public List<IdentityError>? Errors { get; set; }
     }
 }

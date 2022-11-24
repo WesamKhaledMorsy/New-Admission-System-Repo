@@ -16,5 +16,8 @@ namespace Admission.Manage.manageStudent
         List<StudentDTO> GetStudents();
         public StudentFilterDTO GetAllStudentData();
          List<StudentDTO> GetStudentByInterviewerId(Guid? id);
+        List<Model.DomainModel.Student> GetStudentsAccepted();
+        List<Model.DomainModel.Student> GetStudentsRejected();
+
     }
 }

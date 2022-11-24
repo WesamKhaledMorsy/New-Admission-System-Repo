@@ -77,67 +77,68 @@ namespace Admission.Manage.manageInterview
                 
             }
 
+            #region My trail
+            // List<Student> studentInterviewDate = new List<Student>();
 
-           // List<Student> studentInterviewDate = new List<Student>();
-       
-           // studentInterviewDate=studs;
-           // int studIndex = 0 ;
-           //studIndex+= (int)interview.Count;
+            // studentInterviewDate=studs;
+            // int studIndex = 0 ;
+            //studIndex+= (int)interview.Count;
 
-           // if (studIndex<studentInterviewDate.Count)
-           // {
-           //     var interviewStartdate = interview.StartDate;
-           //     var interviewDate = interviewStartdate;
-           //     var lastDate = interview.EndTime.Value;
-           //     bool done = false;
-           //     //for (  int i = 0; i<(interview.EndDate-interviewStartdate).TotalDays+1; i++)
-           //     //{
-           //        var allStudents = _dbContext.Students.Where(stud => !stud.IsDeleted && stud.InterviewDate==null).ToList();
-           //        studIndex += (int)interview.Count;
+            // if (studIndex<studentInterviewDate.Count)
+            // {
+            //     var interviewStartdate = interview.StartDate;
+            //     var interviewDate = interviewStartdate;
+            //     var lastDate = interview.EndTime.Value;
+            //     bool done = false;
+            //     //for (  int i = 0; i<(interview.EndDate-interviewStartdate).TotalDays+1; i++)
+            //     //{
+            //        var allStudents = _dbContext.Students.Where(stud => !stud.IsDeleted && stud.InterviewDate==null).ToList();
+            //        studIndex += (int)interview.Count;
 
-           //         for (studIndex = 0; studIndex<studentInterviewDate.Count; studIndex++)
-           //         {
-           //             if (studIndex < interview.Count)
-           //             {
-           //                 allStudents[studIndex].InterviewDate=interviewDate;
-           //                 interviewDate=interviewDate.AddMinutes(15);
-           //                 lastDate = interviewDate;
-           //             }                       
-           //         }
-                     
-           //                 lastDate = interview.StartDate.AddDays(1);
-                        
-           //         for (studIndex=(int)((int)studentInterviewDate.Count-interview.Count); 
-           //                 studIndex<=studentInterviewDate.Count;
-           //                 studIndex--)
-           //         {
+            //         for (studIndex = 0; studIndex<studentInterviewDate.Count; studIndex++)
+            //         {
+            //             if (studIndex < interview.Count)
+            //             {
+            //                 allStudents[studIndex].InterviewDate=interviewDate;
+            //                 interviewDate=interviewDate.AddMinutes(15);
+            //                 lastDate = interviewDate;
+            //             }                       
+            //         }
 
-           //             if (studIndex <= interview.Count && studIndex >0)
-           //             {
-           //                 // var newInterviewDate = interviewStartdate.AddDays(1);
-           //                 //var newInterviewDate = interviewStartdate;
-           //                 allStudents[studIndex].InterviewDate = lastDate;
-           //                 interviewDate = (DateTime)allStudents[studIndex].InterviewDate;
-           //                 lastDate = interviewDate.AddMinutes(15);
-           //                 if (lastDate == interview.EndTime.Value)
-           //                 {
-           //                     done = true;
+            //                 lastDate = interview.StartDate.AddDays(1);
 
-           //                 }
-                                                 
-           //             }
-           //             else 
-           //             {
-           //                 done = true;
-           //             }
-           //         }
-           //        // var newInterviewDate = interviewStartdate.AddDays(1);
-           //         //lastDate =    interviewDate;
-           //         //lastDate = newInterviewDate;
-           //     //}
-           //        // interviewStartdate = interviewStartdate.AddDays(1);                
-           // }
+            //         for (studIndex=(int)((int)studentInterviewDate.Count-interview.Count); 
+            //                 studIndex<=studentInterviewDate.Count;
+            //                 studIndex--)
+            //         {
 
+            //             if (studIndex <= interview.Count && studIndex >0)
+            //             {
+            //                 // var newInterviewDate = interviewStartdate.AddDays(1);
+            //                 //var newInterviewDate = interviewStartdate;
+            //                 allStudents[studIndex].InterviewDate = lastDate;
+            //                 interviewDate = (DateTime)allStudents[studIndex].InterviewDate;
+            //                 lastDate = interviewDate.AddMinutes(15);
+            //                 if (lastDate == interview.EndTime.Value)
+            //                 {
+            //                     done = true;
+
+            //                 }
+
+            //             }
+            //             else 
+            //             {
+            //                 done = true;
+            //             }
+            //         }
+            //        // var newInterviewDate = interviewStartdate.AddDays(1);
+            //         //lastDate =    interviewDate;
+            //         //lastDate = newInterviewDate;
+            //     //}
+            //        // interviewStartdate = interviewStartdate.AddDays(1);                
+            // }
+
+            #endregion
 
             #region trial
             //if (interview.StudentId==null || interview.StartDate==null || interview.EndDate==null)
@@ -193,6 +194,7 @@ namespace Admission.Manage.manageInterview
             //}
             ////_interview.StudentId=(Guid)interview.StudentId;
             #endregion
+
             _interview.AdminId= interview.AdminId;      
             this._dbContext.Interviews.Add(_interview);
             this._dbContext.SaveChanges();

@@ -59,15 +59,16 @@ namespace Admission.Manage.manageStudent
             _student.StatusId=student.StatusId;
             if (student.StatusId==null)
             {
-                var statuses = _dbContext.Statuses.Where(status => !status.IsDeleted).ToList();
-                foreach (var status in statuses)
-                {
-                    if(status.StatusName.Contains("Waiting for Interview"))
-                    {
-                        student.StatusId = status.Id;
-                        _student.StatusId=student.StatusId;
-                    }
-                }
+                _student.StatusId=new Guid("3fa85f64-5717-4562-b3fc-2c963f66afa7");
+                //var statuses = _dbContext.Statuses.Where(status => !status.IsDeleted).ToList();
+                //foreach (var status in statuses)
+                //{
+                //    if(status.StatusName.Contains("Waiting for Interview"))
+                //    {
+                //        student.StatusId = status.Id;
+                //        _student.StatusId=student.StatusId;
+                //    }
+                //}
             }
 
            
@@ -477,6 +478,7 @@ namespace Admission.Manage.manageStudent
                   AdminId=inter.AdminId,
               }).ToList();
 
+          
             #region Try Union
             /*//******/
             //var combinedResults= 
@@ -505,6 +507,23 @@ namespace Admission.Manage.manageStudent
 
             return dto;
 
+        }
+
+        public List<Student> GetStudentsAccepted()
+        {
+            var studentAccepted = _dbContext.Students.Where(st => !st.IsDeleted
+                  && st.StatusId==new Guid("72ad3bfd-143d-4a1c-fda2-08dab747359c"))
+              .ToList();
+
+            return studentAccepted;
+        }
+       public List<Student> GetStudentsRejected()
+        {
+            var studentRejected = _dbContext.Students.Where(st => !st.IsDeleted
+                && st.StatusId==new Guid("5cdcc685-6480-42da-bd7d-08dab748097d"))
+            .ToList();
+
+            return studentRejected;
         }
 
         public List<StudentDTO> GetStudents()
@@ -549,14 +568,15 @@ namespace Admission.Manage.manageStudent
             {
                 if (stud.InterviewDate<DateTime.Now)
                 {
-                    foreach (var status in statuses)
-                    {
-                        if (status.StatusName.Contains("Missed"))
-                        {
-                            stud.StatusId = status.Id;
-                            stud.StatusName=status.StatusName;
-                        }
-                    }
+                    stud.StatusId=new Guid("269730a0-210f-4a68-6a20-08dab7463022");
+                    //foreach (var status in statuses)
+                    //{
+                    //    if (status.StatusName.Contains("Missed"))
+                    //    {
+                    //        stud.StatusId = status.Id;
+                    //        stud.StatusName=status.StatusName;
+                    //    }
+                    //}
 
                 }
                 //var statuses = _dbContext.Statuses.Where(status => !status.IsDeleted).ToList();

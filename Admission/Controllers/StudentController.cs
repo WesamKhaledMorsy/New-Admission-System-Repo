@@ -1,6 +1,7 @@
 ﻿using Admission.DB;
 using Admission.Manage.manageDocument;
 using Admission.Manage.manageStudent;
+using Admission.Model.DomainModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -65,6 +66,17 @@ namespace Admission.Controllers
         [HttpGet,Route("GetAllStudentData")]
         public StudentFilterDTO GetAllStudentData()
             => _manageStudent.GetAllStudentData();
+
+
+        [HttpGet,Route("GetStudentsAccepted")]
+        public List<Student> GetStudentsAccepted()
+            => _manageStudent.GetStudentsAccepted();
+
+
+        [HttpGet,Route("GetStudentsRejected")]
+        public List<Student> GetStudentsRejected()
+            => _manageStudent.GetStudentsRejected();
+
 
         [HttpGet, Route("StudentNumber")]
         public int StudentNumber()

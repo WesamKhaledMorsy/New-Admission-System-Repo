@@ -38,14 +38,27 @@ namespace Admission.Controllers
         [Route("Register")]
         public async Task<IActionResult> Register([FromBody] Register register)
         {
-            if(!ModelState.IsValid)
+            var result = await _authService.Register(register);
+          
+
+            if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var result = await _authService.Register(register);
             if (!result.IsAuthenticated)
             {
                 return BadRequest(result.Message);
+            }
+
+            if (register.UserName == "google")
+            {
+
+                return BadRequest("Google cannot be used as a user name");
+            }
+
+            if (!register.Email.ToLower().EndsWith("@yahoo.com"))
+            {
+                return BadRequest("Only yahoo.com email addresses are allowed");
             }
             return Ok(result);
         }
